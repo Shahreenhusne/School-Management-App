@@ -1,7 +1,9 @@
 
 import Announcements from '@/components/Announcement'
 import BigCalendar from '@/components/BigCalendar'
+import Modal from '@/components/Modal'
 import Performance from '@/components/Performance'
+import { role } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -14,7 +16,7 @@ const SinglePage = () => {
         {/* TOP */}
         <div className="flex flex-col lg:flex-row gap-4">
           {/* USER INFO CARD */}
-          <div className="bg-secondary/20 py-6 px-4 rounded-md flex-1 flex gap-4">
+          <div className="bg-secondary-alt2 py-6 px-4 rounded-md flex-1 flex gap-4">
             <div className="w-1/3">
               <Image
                 src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200"
@@ -27,9 +29,26 @@ const SinglePage = () => {
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className="flex items-center gap-4">
                 <h1 className="text-xl font-semibold">Leonard Snyder</h1>
-              
+                {role === "admin" && <Modal
+                  table="teacher"
+                  type="update"
+                  data={{
+                    id: 1,
+                    username: "deanguerrero",
+                    email: "deanguerrero@gmail.com",
+                    password: "password",
+                    firstName: "Dean",
+                    lastName: "Guerrero",
+                    phone: "+1 234 567 89",
+                    address: "1234 Main St, Anytown, USA",
+                    bloodType: "A+",
+                    dateOfBirth: "2000-01-01",
+                    sex: "male",
+                    img: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                  }}
+                />}
               </div>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm ">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               </p>
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs font-medium">

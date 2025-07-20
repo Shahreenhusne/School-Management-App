@@ -20,6 +20,16 @@ Installed items :
 
 1. Recahrts -  npm install recharts
 https://recharts.org/en-US/guide/installation
+np
+2.React Hook Form - npm install react-hook-form
+Zod - npm i zod
+hookform/resolvers - npm i @hookform/resolvers
+React Hook + Zod 
+https://www.npmjs.com/package/@hookform/resolvers#zod
+
+
+  
+
 
 
 
