@@ -2,7 +2,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -35,6 +35,7 @@ model Student {
   grade Grade @relation(fields: [gradeID], references: [id])
   attendance Attendance[]
   result     Result[]
+  birthday    DateTime
 
 }
 
@@ -50,17 +51,21 @@ model Parent {
   student   Student[]
 }
 model Teacher {
-  id        String @id 
-  username  String @unique
+  id        String    @id
+  username  String    @unique
   name      String
   surname   String
-  email     String? @unique
-  phone     String? @unique
+  email     String?   @unique
+  phone     String?   @unique
   address   String
-  createdAt DateTime @default(now())
-  subject   Subject[]
-  lesson    Lesson[] 
-  class     Class[]
+  img       String?
+  bloodType String
+  sex       UserSex
+  createdAt DateTime  @default(now())
+  subjects  Subject[]
+  lessons   Lesson[]
+  classes   Class[]
+  birthday  DateTime
 }
 model Subject {
   id   Int @id @default(autoincrement())
@@ -91,10 +96,11 @@ model Class {
   students Student[]
   announcement Announcement[]
   event Event[]
-  supervisorID String 
-  supervisor Teacher @relation(fields: [supervisorID ], references: [id]) 
+  supervisorID String?
+  supervisor Teacher? @relation(fields: [supervisorID ], references: [id]) 
   gradeID Int
   grade Grade @relation(fields: [gradeID ], references: [id]) 
+  capacity Int
 }
 model Grade{
   id   Int @id @default(autoincrement())
@@ -144,8 +150,8 @@ model Event{
   id   Int @id @default(autoincrement())
   title String
   description String
-  startDate DateTime
-  endDate DateTime
+  startTime DateTime
+  endTime DateTime
   classId Int?
   class Class? @relation(fields: [classId],references: [id])
 }
@@ -160,7 +166,7 @@ model Announcement{
 }
 
 
-enum UserSex{
+ enum UserSex{
   MALE 
   FEMALE
 }
